@@ -64,14 +64,14 @@ input,select{width:100%;padding:13px;margin:7px 0 14px;border:1px solid #ddd;bor
     <div class="product-info">
       <div>
         <h2 style="margin:0 0 8px">Handcrafted Cane Rack</h2>
-        <div class="price">₹700</div>
+        <div class="price">₹750</div>
         <p style="color:#75685e">Local delivery available in Bareilly.</p>
         <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
           <strong>Quantity:</strong>
           <button type="button" onclick="changeQty(-1)" style="width:38px;height:38px;border:1px solid #ddd;border-radius:8px;background:#fff;font-size:20px;cursor:pointer">−</button>
           <input id="qty" type="number" value="1" min="1" max="99" onchange="updateTotal()" style="width:65px;margin:0;text-align:center;padding:9px;border:1px solid #ddd;border-radius:8px">
           <button type="button" onclick="changeQty(1)" style="width:38px;height:38px;border:1px solid #ddd;border-radius:8px;background:#fff;font-size:20px;cursor:pointer">+</button>
-          <strong id="totalPrice">Total: ₹700</strong>
+          <strong id="totalPrice">Total: ₹750</strong>
         </div>
       </div>
       <div>
@@ -106,7 +106,7 @@ input,select{width:100%;padding:13px;margin:7px 0 14px;border:1px solid #ddd;bor
   <h2>Checkout</h2>
   <div style="background:#f7f2eb;border-radius:12px;padding:14px;margin:12px 0 20px">
     <strong>Handcrafted Cane Rack</strong><br>
-    ₹700 × <span id="checkoutQty">1</span> = <strong id="checkoutTotal">₹700</strong>
+    ₹750 × <span id="checkoutQty">1</span> = <strong id="checkoutTotal">₹750</strong>
   </div>
 
   <label><strong>Full Name *</strong></label>
@@ -120,13 +120,12 @@ input,select{width:100%;padding:13px;margin:7px 0 14px;border:1px solid #ddd;bor
 
   <label><strong>Payment Method *</strong></label>
   <select id="payment" onchange="paymentChanged()">
-    <option value="COD">Cash on Delivery</option>
     <option value="UPI">UPI</option>
     <option value="Online Payment">Online Payment</option>
   </select>
 
   <div id="paymentNote" style="background:#f7f2eb;padding:12px;border-radius:9px;font-size:13px;margin-bottom:14px">
-    Cash on Delivery selected. Payment will be collected at delivery.
+    UPI selected. H A House will share UPI payment instructions after receiving your order.
   </div>
 
   <label style="display:flex;gap:8px;align-items:flex-start;margin:12px 0 18px">
@@ -150,7 +149,7 @@ function changeQty(n){
 }
 function updateTotal(){
  const q=Math.max(1,parseInt(document.getElementById('qty').value)||1);
- const total=700*q;
+ const total=750*q;
  document.getElementById('totalPrice').textContent='Total: ₹'+total.toLocaleString('en-IN');
  if(document.getElementById('checkoutQty')) document.getElementById('checkoutQty').textContent=q;
  if(document.getElementById('checkoutTotal')) document.getElementById('checkoutTotal').textContent='₹'+total.toLocaleString('en-IN');
@@ -163,8 +162,7 @@ function closeOrder(){document.getElementById('orderModal').style.display='none'
 function paymentChanged(){
  const p=document.getElementById('payment').value;
  const note=document.getElementById('paymentNote');
- if(p==='COD') note.textContent='Cash on Delivery selected. Payment will be collected at delivery.';
- else if(p==='UPI') note.textContent='UPI selected. H A House will share UPI payment instructions after receiving your order.';
+ if(p==='UPI') note.textContent='UPI selected. H A House will share UPI payment instructions after receiving your order.';
  else note.textContent='Online Payment selected. H A House will confirm the secure payment link after receiving your order.';
 }
 function placeOrder(){
@@ -174,7 +172,7 @@ function placeOrder(){
  const pay=document.getElementById('payment').value;
  const terms=document.getElementById('terms').checked;
  const q=Math.max(1,parseInt(document.getElementById('qty').value)||1);
- const total=700*q;
+ const total=750*q;
 
  if(!n){alert('Please enter your full name.');return}
  if(!/^[6-9]\d{9}$/.test(p)){alert('Please enter a valid 10-digit Indian mobile number.');return}
@@ -182,7 +180,7 @@ function placeOrder(){
  if(!terms){alert('Please confirm the order details.');return}
 
  const orderId='HA'+Date.now().toString().slice(-8);
- const msg=`*NEW ORDER - H A HOUSE*%0A%0AOrder ID: ${orderId}%0AProduct: Handcrafted Cane Rack%0AQuantity: ${q}%0APrice: ₹700 each%0A*Total: ₹${total.toLocaleString('en-IN')}*%0A%0ACustomer: ${encodeURIComponent(n)}%0AMobile: ${encodeURIComponent(p)}%0AAddress: ${encodeURIComponent(a)}%0APayment: ${encodeURIComponent(pay)}%0A%0APlease confirm my order.`;
+ const msg=`*NEW ORDER - H A HOUSE*%0A%0AOrder ID: ${orderId}%0AProduct: Handcrafted Cane Rack%0AQuantity: ${q}%0APrice: ₹750 each%0A*Total: ₹${total.toLocaleString('en-IN')}*%0A%0ACustomer: ${encodeURIComponent(n)}%0AMobile: ${encodeURIComponent(p)}%0AAddress: ${encodeURIComponent(a)}%0APayment: ${encodeURIComponent(pay)}%0A%0APlease confirm my order.`;
  window.open('https://wa.me/919653364494?text='+msg,'_blank');
  alert('Order '+orderId+' is ready. WhatsApp will open so H A House can confirm it.');
  closeOrder();
