@@ -1,101 +1,772 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>H A House | Handcrafted Cane Racks</title>
-<meta name="description" content="Handcrafted cane racks by H A House. View products, prices and order on WhatsApp.">
-<meta property="og:title" content="H A House | Handcrafted Cane Racks">
-<meta property="og:description" content="Handcrafted cane racks by H A House. View products, prices and order on WhatsApp.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hashim049.github.io/H-A-house/">
-<meta property="og:image" content="https://hashim049.github.io/H-A-house/rack4.jpeg">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:#faf8f4;color:#2b241e}
-header{position:sticky;top:0;z-index:10;background:#211b16;color:#fff;padding:15px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px}.logo{font-size:22px;font-weight:800}.nav a{color:#fff;text-decoration:none;margin-left:15px}
-.hero{padding:65px 6%;background:linear-gradient(135deg,#efe4d4,#fff);text-align:center}.hero h1{font-size:clamp(35px,6vw,65px);margin:0 0 12px}.hero p{font-size:18px;color:#6b625b}
-.wrap{width:min(1150px,92%);margin:auto}.section{padding:45px 0}.section h2{text-align:center;font-size:30px}.sub{text-align:center;color:#777;margin-bottom:25px}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}.product{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 6px 25px #00000010}.product img{width:100%;height:240px;object-fit:cover}.pbody{padding:17px}.price{font-size:22px;font-weight:800;margin:8px 0}.btn{border:0;border-radius:10px;padding:12px 15px;cursor:pointer;font-weight:700;text-decoration:none;display:inline-block}.order{background:#168c45;color:#fff;width:100%}.status{background:#fff;padding:25px;border-radius:16px;box-shadow:0 5px 25px #0000000a}.status-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.alt{background:#211b16;color:#fff}.modal{position:fixed;inset:0;background:#0008;display:none;place-items:center;padding:15px;z-index:30}.modal.show{display:grid}.box{background:#fff;border-radius:16px;padding:24px;width:min(470px,100%)}.box h2{margin-top:0}.box label{display:block;font-weight:700;margin:12px 0 6px}.box input,.box textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px}.actions{display:flex;gap:10px;margin-top:15px}.actions button{flex:1}.cancel{background:#ddd}.confirm{background:#168c45;color:#fff}
-footer{text-align:center;padding:30px;background:#211b16;color:#fff}
-</style>
-</head>
-<body>
-<header><div class="logo">H A <span>House</span></div><nav class="nav"><a href="#products">Products</a><a href="#whatsapp-status">WhatsApp</a></nav></header>
-<section class="hero"><div class="wrap"><h1>Handcrafted Cane Furniture</h1><p>Beautiful, practical and handcrafted products by H A House.</p><a class="btn alt" href="#products">View Products</a></div></section>
-<main class="wrap">
-<section class="section" id="products"><h2>Our Products</h2><p class="sub">Choose a product and order directly on WhatsApp.</p><div id="productGrid" class="product-grid"></div></section>
-<section class="section" id="whatsapp-status"><div class="status"><h2>WhatsApp Status</h2><p>Share H A House with your WhatsApp contacts.</p><div class="status-actions"><button class="btn alt" onclick="shareSite()">📤 Share Website</button><a class="btn alt" target="_blank" rel="noopener" href="https://wa.me/?text=Check%20out%20H%20A%20House%20products%3A%20https%3A%2F%2Fhashim049.github.io%2FH-A-house%2F">💬 Share on WhatsApp</a></div></div></section>
-</main>
-<footer>© <span id="year"></span> H A House</footer>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="modal" id="orderModal"><div class="box"><h2>Place WhatsApp Order</h2><p id="selectedProduct"></p>
-<label>Name</label><input id="cName" required>
-<label>Mobile</label><input id="cPhone" inputmode="tel" required>
-<label>Address</label><textarea id="cAddress" rows="3" required></textarea>
-<div class="actions"><button class="btn cancel" onclick="closeOrder()">Cancel</button><button class="btn confirm" onclick="submitOrder()">Confirm Order</button></div><p id="orderMsg"></p></div></div>
+  <title>H A House | Handcrafted Cane Racks</title>
+
+  <meta name="description"
+        content="Handcrafted cane racks by H A House. View products, prices and order on WhatsApp.">
+
+  <meta property="og:title" content="H A House | Handcrafted Cane Racks">
+  <meta property="og:description"
+        content="Handcrafted cane racks by H A House. View products, prices and order on WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:url"
+        content="https://hashim049.github.io/H-A-house/">
+  <meta property="og:image"
+        content="https://hashim049.github.io/H-A-house/rack4.jpeg">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #faf8f4;
+      color: #2b241e;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #211b16;
+      color: white;
+      padding: 15px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+    }
+
+    .hero {
+      padding: 70px 6%;
+      background: linear-gradient(135deg, #efe4d4, #fff);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(35px, 6vw, 65px);
+      margin: 0 0 12px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #6b625b;
+    }
+
+    .wrap {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+    .section {
+      padding: 45px 0;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .sub {
+      text-align: center;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 25px #00000010;
+    }
+
+    .product img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .pbody {
+      padding: 17px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 800;
+      margin: 8px 0;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 15px;
+      cursor: pointer;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .order {
+      background: #168c45;
+      color: white;
+      width: 100%;
+    }
+
+    .share {
+      background: #211b16;
+      color: white;
+    }
+
+    .status {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px #0000000a;
+    }
+
+    .status-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: #0008;
+      display: none;
+      place-items: center;
+      padding: 15px;
+      z-index: 30;
+    }
+
+    .modal.show {
+      display: grid;
+    }
+
+    .box {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      width: min(470px, 100%);
+    }
+
+    .box h2 {
+      margin-top: 0;
+    }
+
+    .box label {
+      display: block;
+      font-weight: 700;
+      margin: 12px 0 6px;
+    }
+
+    .box input,
+    .box textarea {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #ddd;
+      border-radius: 9px;
+      font-size: 15px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .actions button {
+      flex: 1;
+    }
+
+    .cancel {
+      background: #ddd;
+    }
+
+    .confirm {
+      background: #168c45;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #211b16;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">H A House</div>
+
+  <nav>
+    <a href="#products">Products</a>
+    <a href="#whatsapp">WhatsApp</a>
+  </nav>
+</header>
+
+<section class="hero">
+
+  <div class="wrap">
+
+    <h1>Handcrafted Cane Furniture</h1>
+
+    <p>
+      Beautiful, practical and handcrafted products by H A House.
+    </p>
+
+    <a class="btn share" href="#products">
+      View Products
+    </a>
+
+  </div>
+
+</section>
+
+<main class="wrap">
+
+<section class="section" id="products">
+
+  <h2>Our Products</h2>
+
+  <p class="sub">
+    Choose a product and order directly on WhatsApp.
+  </p>
+
+  <div id="productGrid" class="product-grid"></div>
+
+</section>
+
+
+<section class="section" id="whatsapp">
+
+  <div class="status">
+
+    <h2>WhatsApp</h2>
+
+    <p>
+      Share H A House with your friends and customers.
+    </p>
+
+    <div class="status-actions">
+
+      <button class="btn share"
+              onclick="shareSite()">
+        📤 Share Website
+      </button>
+
+      <a class="btn share"
+         target="_blank"
+         href="https://wa.me/?text=Check%20out%20H%20A%20House%20products%3A%20https%3A%2F%2Fhashim049.github.io%2FH-A-house/">
+        💬 Share on WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  © <span id="year"></span> H A House
+
+</footer>
+
+
+<!-- ORDER MODAL -->
+
+<div class="modal" id="orderModal">
+
+  <div class="box">
+
+    <h2>Place WhatsApp Order</h2>
+
+    <p id="selectedProduct"></p>
+
+    <label>Name</label>
+
+    <input
+      id="cName"
+      type="text"
+      placeholder="Your name"
+    >
+
+    <label>Mobile</label>
+
+    <input
+      id="cPhone"
+      type="tel"
+      placeholder="Mobile number"
+    >
+
+    <label>Address</label>
+
+    <textarea
+      id="cAddress"
+      rows="4"
+      placeholder="Full delivery address">
+    </textarea>
+
+    <div class="actions">
+
+      <button
+        class="btn cancel"
+        onclick="closeOrder()">
+        Cancel
+      </button>
+
+      <button
+        class="btn confirm"
+        onclick="submitOrder()">
+        Confirm Order
+      </button>
+
+    </div>
+
+    <p id="orderMsg"></p>
+
+  </div>
+
+</div>
+
 
 <script>
-const SUPABASE_URL="https://atguvpoxjzutvpyeqzai.supabase.co";
-const SUPABASE_KEY="sb_publishable_bloeT0C8P9HFvLugiE7lnA_4lwQffUk";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-// CHANGE THIS to H-A House WhatsApp number, country code included, no + or spaces.
-const WHATSAPP_NUMBER="919653364494";
+const SUPABASE_URL =
+"https://atguvpoxjzutvpyeqzai.supabase.co";
 
-const products=[
- {id:"rack-1",name:"Handcrafted Cane Rack",price:999,image:"rack4.jpeg",description:"Strong and stylish handmade cane rack."},
- {id:"rack-2",name:"Cane Storage Rack",price:1499,image:"rack4.jpeg",description:"Useful storage rack for home."},
- {id:"rack-3",name:"Premium Cane Rack",price:1999,image:"rack4.jpeg",description:"Premium handcrafted cane design."}
+const SUPABASE_KEY =
+"sb_publishable_bloeT0C8P9HFvLugiE7lnA_4lwQffUk";
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/*
+IMPORTANT:
+
+Apna WhatsApp number yahan rakho.
+
+Example:
+
+919876543210
+
++ mat lagana.
+Space mat lagana.
+*/
+
+const WHATSAPP_NUMBER =
+"919876543210";
+
+
+/*
+PRODUCTS
+*/
+
+const products = [
+
+  {
+    id: "rack-1",
+    name: "Handcrafted Cane Rack",
+    price: 999,
+    image: "rack4.jpeg",
+    description:
+      "Strong and stylish handmade cane rack."
+  },
+
+  {
+    id: "rack-2",
+    name: "Cane Storage Rack",
+    price: 1499,
+    image: "rack4.jpeg",
+    description:
+      "Useful storage rack for home."
+  },
+
+  {
+    id: "rack-3",
+    name: "Premium Cane Rack",
+    price: 1999,
+    image: "rack4.jpeg",
+    description:
+      "Premium handcrafted cane design."
+  }
+
 ];
 
-let selectedProduct=null;
 
-function money(n){return Number(n).toLocaleString("en-IN")}
-function renderProducts(){
- const grid=document.getElementById("productGrid");
- grid.innerHTML=products.map(p=>`<article class="product">
- <img src="${p.image}" alt="${p.name}" onerror="this.src='rack4.jpeg'">
- <div class="pbody"><h3>${p.name}</h3><p>${p.description}</p><div class="price">₹${money(p.price)}</div>
- <button class="btn order" onclick="openOrder('${p.id}')">🛒 Order on WhatsApp</button></div></article>`).join("");
+let selectedProduct = null;
+
+
+/*
+FORMAT PRICE
+*/
+
+function money(value) {
+
+  return Number(value)
+    .toLocaleString("en-IN");
+
 }
-function openOrder(id){
- selectedProduct=products.find(p=>p.id===id);
- if(!selectedProduct)return;
- document.getElementById("selectedProduct").textContent=`${selectedProduct.name} — ₹${money(selectedProduct.price)}`;
- document.getElementById("orderMsg").textContent="";
- document.getElementById("orderModal").classList.add("show");
+
+
+/*
+SHOW PRODUCTS
+*/
+
+function renderProducts() {
+
+  const grid =
+    document.getElementById(
+      "productGrid"
+    );
+
+  grid.innerHTML =
+    products.map(product => `
+
+      <article class="product">
+
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          onerror="this.src='rack4.jpeg'"
+        >
+
+        <div class="pbody">
+
+          <h3>
+            ${product.name}
+          </h3>
+
+          <p>
+            ${product.description}
+          </p>
+
+          <div class="price">
+            ₹${money(product.price)}
+          </div>
+
+          <button
+            class="btn order"
+            onclick="openOrder('${product.id}')">
+
+            🛒 Order on WhatsApp
+
+          </button>
+
+        </div>
+
+      </article>
+
+    `).join("");
+
 }
-function closeOrder(){document.getElementById("orderModal").classList.remove("show")}
-async function submitOrder(){
- const name=document.getElementById("cName").value.trim();
- const phone=document.getElementById("cPhone").value.trim();
- const address=document.getElementById("cAddress").value.trim();
- const msg=document.getElementById("orderMsg");
- if(!name||!phone||!address){msg.textContent="Please fill all details.";return}
- if(!selectedProduct)return;
- msg.textContent="Saving order...";
- const orderNumber="HA-"+Date.now().toString().slice(-8);
- const items=[{id:selectedProduct.id,name:selectedProduct.name,price:selectedProduct.price,quantity:1}];
- const {error}=await supabaseClient.from("orders").insert({
-   order_number:orderNumber,customer_name:name,phone:phone,address:address,
-   items:items,total_amount:selectedProduct.price,payment_status:"pending",
-   order_status:"new",payment_method:"whatsapp"
- });
- if(error){msg.textContent="Order save nahi hua: "+error.message;return}
- const text=`🛒 H-A HOUSE ORDER\n\nOrder: ${orderNumber}\nProduct: ${selectedProduct.name}\nAmount: ₹${selectedProduct.price}\n\nCustomer: ${name}\nMobile: ${phone}\nAddress: ${address}`;
- const wa="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(text);
- window.open(wa,"_blank","noopener");
- msg.textContent="Order created. WhatsApp opening...";
- setTimeout(closeOrder,700);
+
+
+/*
+OPEN ORDER FORM
+*/
+
+function openOrder(id) {
+
+  selectedProduct =
+    products.find(
+      product => product.id === id
+    );
+
+  if (!selectedProduct) return;
+
+  document.getElementById(
+    "selectedProduct"
+  ).textContent =
+    selectedProduct.name +
+    " — ₹" +
+    money(selectedProduct.price);
+
+  document.getElementById(
+    "orderMsg"
+  ).textContent = "";
+
+  document.getElementById(
+    "orderModal"
+  ).classList.add("show");
+
 }
-async function shareSite(){
- const data={title:"H A House",text:"Check out H A House products",url:location.href};
- if(navigator.share){try{await navigator.share(data)}catch(e){}}
- else window.open("https://wa.me/?text="+encodeURIComponent(data.text+" "+data.url),"_blank");
+
+
+/*
+CLOSE ORDER
+*/
+
+function closeOrder() {
+
+  document.getElementById(
+    "orderModal"
+  ).classList.remove("show");
+
 }
-document.getElementById("year").textContent=new Date().getFullYear();
+
+
+/*
+CREATE ORDER
+*/
+
+async function submitOrder() {
+
+  const name =
+    document.getElementById(
+      "cName"
+    ).value.trim();
+
+  const phone =
+    document.getElementById(
+      "cPhone"
+    ).value.trim();
+
+  const address =
+    document.getElementById(
+      "cAddress"
+    ).value.trim();
+
+  const msg =
+    document.getElementById(
+      "orderMsg"
+    );
+
+
+  if (
+    !name ||
+    !phone ||
+    !address
+  ) {
+
+    msg.textContent =
+      "Please fill all details.";
+
+    return;
+
+  }
+
+
+  if (!selectedProduct) return;
+
+
+  msg.textContent =
+    "Creating order...";
+
+
+  const orderNumber =
+    "HA-" +
+    Date.now()
+      .toString()
+      .slice(-8);
+
+
+  const items = [
+
+    {
+      id: selectedProduct.id,
+      name: selectedProduct.name,
+      price: selectedProduct.price,
+      quantity: 1
+    }
+
+  ];
+
+
+  const { error } =
+    await supabaseClient
+      .from("orders")
+      .insert({
+
+        order_number:
+          orderNumber,
+
+        customer_name:
+          name,
+
+        phone:
+          phone,
+
+        address:
+          address,
+
+        items:
+          items,
+
+        total_amount:
+          selectedProduct.price,
+
+        payment_status:
+          "pending",
+
+        payment_method:
+          "whatsapp",
+
+        order_status:
+          "new"
+
+      });
+
+
+  if (error) {
+
+    msg.textContent =
+      "Order save nahi hua: " +
+      error.message;
+
+    return;
+
+  }
+
+
+  const whatsappMessage =
+
+`🛒 H-A HOUSE ORDER
+
+Order: ${orderNumber}
+
+Product:
+${selectedProduct.name}
+
+Amount:
+₹${selectedProduct.price}
+
+Customer:
+${name}
+
+Mobile:
+${phone}
+
+Address:
+${address}`;
+
+
+  const whatsappURL =
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(
+      whatsappMessage
+    );
+
+
+  msg.textContent =
+    "Order created. Opening WhatsApp...";
+
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+
+  setTimeout(
+    closeOrder,
+    1000
+  );
+
+}
+
+
+/*
+SHARE WEBSITE
+*/
+
+async function shareSite() {
+
+  const data = {
+
+    title:
+      "H A House",
+
+    text:
+      "Check out H A House products",
+
+    url:
+      window.location.href
+
+  };
+
+
+  if (
+    navigator.share
+  ) {
+
+    try {
+
+      await navigator.share(
+        data
+      );
+
+    } catch (error) {}
+
+  } else {
+
+    window.open(
+      "https://wa.me/?text=" +
+      encodeURIComponent(
+        data.text +
+        " " +
+        data.url
+      ),
+      "_blank"
+    );
+
+  }
+
+}
+
+
+document.getElementById(
+  "year"
+).textContent =
+  new Date().getFullYear();
+
+
 renderProducts();
+
 </script>
+
 </body>
 </html>
