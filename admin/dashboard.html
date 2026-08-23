@@ -1,276 +1,830 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
-  <title>H-A House Admin</title>
+<title>H-A House Admin</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
+<script src="config.js"></script>
 
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
 
-    body {
-      margin: 0;
-      background: #f4f6f8;
-      color: #111827;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 18px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+body {
 
-    header h2 {
-      margin: 0;
-    }
+  margin: 0;
 
-    #logout {
-      background: #dc2626;
-      color: white;
-      border: 0;
-      padding: 10px 16px;
-      border-radius: 7px;
-      cursor: pointer;
-    }
+  font-family: Arial, sans-serif;
 
-    .container {
-      padding: 25px;
-      max-width: 1200px;
-      margin: auto;
-    }
+  background: #f5f3ef;
 
-    .welcome {
-      margin-bottom: 25px;
-    }
+  color: #211d18;
 
-    .cards {
-      display: grid;
-      grid-template-columns:
-        repeat(auto-fit, minmax(200px, 1fr));
+}
 
-      gap: 18px;
-    }
+header {
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 3px 15px rgba(0,0,0,.06);
-    }
+  background: #211d18;
 
-    .card h3 {
-      margin-top: 0;
-      color: #6b7280;
-      font-size: 15px;
-    }
+  color: white;
 
-    .number {
-      font-size: 30px;
-      font-weight: bold;
-    }
+  padding: 18px 25px;
 
-    .section {
-      margin-top: 30px;
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-    }
+  display: flex;
 
-    .section h2 {
-      margin-top: 0;
-    }
+  justify-content: space-between;
 
-    .status {
-      padding: 12px;
-      background: #ecfdf5;
-      color: #047857;
-      border-radius: 8px;
-    }
+  align-items: center;
 
-  </style>
+}
+
+header h2 {
+  margin: 0;
+}
+
+.logout {
+
+  background: #dc2626;
+
+  color: white;
+
+  border: 0;
+
+  padding: 10px 16px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+}
+
+.container {
+
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 25px;
+
+}
+
+.stats {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(190px, 1fr)
+    );
+
+  gap: 18px;
+
+}
+
+.card {
+
+  background: white;
+
+  padding: 22px;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 3px 15px rgba(0,0,0,.06);
+
+}
+
+.card h3 {
+
+  margin-top: 0;
+
+  color: #777;
+
+}
+
+.number {
+
+  font-size: 30px;
+
+  font-weight: bold;
+
+}
+
+.orders {
+
+  background: white;
+
+  margin-top: 25px;
+
+  padding: 22px;
+
+  border-radius: 14px;
+
+  overflow-x: auto;
+
+}
+
+table {
+
+  width: 100%;
+
+  min-width: 850px;
+
+  border-collapse: collapse;
+
+}
+
+th,
+td {
+
+  padding: 12px;
+
+  border-bottom:
+    1px solid #eee;
+
+  text-align: left;
+
+  vertical-align: top;
+
+}
+
+select {
+
+  padding: 8px;
+
+  border:
+    1px solid #ddd;
+
+  border-radius: 8px;
+
+}
+
+.whatsapp {
+
+  display: inline-block;
+
+  background: #168c45;
+
+  color: white;
+
+  padding: 8px 11px;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+
+}
+
+#message {
+
+  color: #777;
+
+}
+
+</style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
-  <h2>H-A House Admin</h2>
+<h2>
+H-A House Admin
+</h2>
 
-  <button id="logout">
-    Logout
-  </button>
+<button
+  class="logout"
+  id="logout">
+
+Logout
+
+</button>
 
 </header>
 
+
 <div class="container">
 
-  <div class="welcome">
-    <h1>Dashboard</h1>
-    <p id="adminEmail">Loading...</p>
-  </div>
 
-  <div class="cards">
+<h1>
+Dashboard
+</h1>
 
-    <div class="card">
+<p id="adminEmail">
+Loading...
+</p>
 
-      <h3>Total Products</h3>
 
-      <div class="number"
-           id="productsCount">
-        0
-      </div>
+<div class="stats">
 
-    </div>
 
-    <div class="card">
+<div class="card">
 
-      <h3>Total Orders</h3>
+<h3>
+Total Orders
+</h3>
 
-      <div class="number"
-           id="ordersCount">
-        0
-      </div>
+<div
+  class="number"
+  id="totalOrders">
 
-    </div>
+0
 
-    <div class="card">
+</div>
 
-      <h3>Affiliate Products</h3>
+</div>
 
-      <div class="number"
-           id="affiliateCount">
-        0
-      </div>
 
-    </div>
+<div class="card">
 
-  </div>
+<h3>
+New Orders
+</h3>
 
-  <div class="section">
+<div
+  class="number"
+  id="newOrders">
 
-    <h2>System Status</h2>
+0
 
-    <div class="status">
-      H-A House Admin connected to Supabase.
-    </div>
+</div>
 
-  </div>
+</div>
+
+
+<div class="card">
+
+<h3>
+Paid Orders
+</h3>
+
+<div
+  class="number"
+  id="paidOrders">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>
+Revenue
+</h3>
+
+<div
+  class="number"
+  id="revenue">
+
+₹0
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="orders">
+
+<h2>
+Orders
+</h2>
+
+<p id="message">
+Loading orders...
+</p>
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Order
+</th>
+
+<th>
+Customer
+</th>
+
+<th>
+Product
+</th>
+
+<th>
+Amount
+</th>
+
+<th>
+Payment
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+WhatsApp
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="ordersTable">
+
+</tbody>
+
+</table>
+
+</div>
 
 </div>
 
 
 <script>
 
+
 async function checkAdmin() {
 
-  const {
-    data: { user }
-  } = await supabaseClient.auth.getUser();
 
-  if (!user) {
-
-    window.location.href = "login.html";
-
-    return null;
+const {
+  data: {
+    user
   }
+} =
+await supabaseClient
+  .auth
+  .getUser();
 
-  const { data: admin, error } =
-    await supabaseClient
-      .from("admin_profiles")
-      .select("id,email,role")
-      .eq("id", user.id)
-      .maybeSingle();
 
-  if (error || !admin) {
+if (!user) {
 
-    await supabaseClient.auth.signOut();
+  window.location.href =
+    "login.html";
 
-    window.location.href = "login.html";
-
-    return null;
-  }
-
-  document.getElementById("adminEmail").textContent =
-    "Logged in as: " + admin.email;
-
-  return user;
+  return null;
 
 }
 
 
-async function loadDashboard() {
+const {
+  data: admin,
+  error
+} =
+await supabaseClient
 
-  const user = await checkAdmin();
+  .from(
+    "admin_profiles"
+  )
+
+  .select(
+    "id,email,role"
+  )
+
+  .eq(
+    "id",
+    user.id
+  )
+
+  .maybeSingle();
+
+
+if (
+  error ||
+  !admin
+) {
+
+  await supabaseClient
+    .auth
+    .signOut();
+
+  window.location.href =
+    "login.html";
+
+  return null;
+
+}
+
+
+document.getElementById(
+  "adminEmail"
+).textContent =
+  "Logged in as: " +
+  admin.email;
+
+
+return user;
+
+}
+
+
+async function loadOrders() {
+
+
+const {
+  data: orders,
+  error
+} =
+await supabaseClient
+
+  .from("orders")
+
+  .select("*")
+
+  .order(
+    "created_at",
+    {
+      ascending: false
+    }
+  );
+
+
+if (error) {
+
+  document.getElementById(
+    "message"
+  ).textContent =
+    "Orders error: " +
+    error.message;
+
+  return;
+
+}
+
+
+const list =
+  orders || [];
+
+
+document.getElementById(
+  "totalOrders"
+).textContent =
+  list.length;
+
+
+document.getElementById(
+  "newOrders"
+).textContent =
+  list.filter(
+    order =>
+      order.order_status ===
+      "new"
+  ).length;
+
+
+document.getElementById(
+  "paidOrders"
+).textContent =
+  list.filter(
+    order =>
+      order.payment_status ===
+      "paid"
+  ).length;
+
+
+const revenue =
+  list
+    .filter(
+      order =>
+        order.payment_status ===
+        "paid"
+    )
+    .reduce(
+      (
+        total,
+        order
+      ) =>
+        total +
+        Number(
+          order.total_amount ||
+          0
+        ),
+      0
+    );
+
+
+document.getElementById(
+  "revenue"
+).textContent =
+  "₹" +
+  revenue.toLocaleString(
+    "en-IN"
+  );
+
+
+const table =
+  document.getElementById(
+    "ordersTable"
+  );
+
+
+table.innerHTML = "";
+
+
+if (!list.length) {
+
+  document.getElementById(
+    "message"
+  ).textContent =
+    "Abhi koi order nahi hai.";
+
+  return;
+
+}
+
+
+document.getElementById(
+  "message"
+).textContent =
+  list.length +
+  " order(s) found";
+
+
+list.forEach(
+  order => {
+
+
+    const items =
+      Array.isArray(
+        order.items
+      )
+        ? order.items
+        : [];
+
+
+    const productText =
+      items
+        .map(
+          item =>
+            item.name +
+            " × " +
+            item.quantity
+        )
+        .join("<br>");
+
+
+    const whatsappNumber =
+      String(
+        order.phone || ""
+      ).replace(
+        /\D/g,
+        ""
+      );
+
+
+    const whatsappMessage =
+      "H-A House Order " +
+      order.order_number +
+      " - Status: " +
+      order.order_status;
+
+
+    const whatsappURL =
+      "https://wa.me/" +
+      whatsappNumber +
+      "?text=" +
+      encodeURIComponent(
+        whatsappMessage
+      );
+
+
+    const row =
+      document.createElement(
+        "tr"
+      );
+
+
+    row.innerHTML = `
+
+<td>
+
+<strong>
+${order.order_number}
+</strong>
+
+<br>
+
+<small>
+${new Date(
+  order.created_at
+).toLocaleString(
+  "en-IN"
+)}
+</small>
+
+</td>
+
+
+<td>
+
+${order.customer_name}
+
+<br>
+
+${order.phone}
+
+<br>
+
+${order.address}
+
+</td>
+
+
+<td>
+
+${productText}
+
+</td>
+
+
+<td>
+
+₹${Number(
+  order.total_amount ||
+  0
+).toLocaleString(
+  "en-IN"
+)}
+
+</td>
+
+
+<td>
+
+${order.payment_status}
+
+</td>
+
+
+<td>
+
+<select
+  class="statusSelect"
+  data-id="${order.id}">
+
+<option value="new">
+New
+</option>
+
+<option value="confirmed">
+Confirmed
+</option>
+
+<option value="processing">
+Processing
+</option>
+
+<option value="shipped">
+Shipped
+</option>
+
+<option value="delivered">
+Delivered
+</option>
+
+<option value="cancelled">
+Cancelled
+</option>
+
+</select>
+
+</td>
+
+
+<td>
+
+<a
+  class="whatsapp"
+  href="${whatsappURL}"
+  target="_blank">
+
+WhatsApp
+
+</a>
+
+</td>
+
+`;
+
+
+    table.appendChild(
+      row
+    );
+
+
+    const select =
+      row.querySelector(
+        ".statusSelect"
+      );
+
+
+    select.value =
+      order.order_status ||
+      "new";
+
+
+    select.addEventListener(
+      "change",
+      async function() {
+
+
+        const {
+          error
+        } =
+        await supabaseClient
+
+          .from("orders")
+
+          .update({
+
+            order_status:
+              this.value
+
+          })
+
+          .eq(
+            "id",
+            this.dataset.id
+          );
+
+
+        if (error) {
+
+          alert(
+            error.message
+          );
+
+          return;
+
+        }
+
+
+        loadOrders();
+
+      }
+    );
+
+  }
+);
+
+}
+
+
+document.getElementById(
+  "logout"
+).addEventListener(
+  "click",
+  async function() {
+
+    await supabaseClient
+      .auth
+      .signOut();
+
+    window.location.href =
+      "login.html";
+
+  }
+);
+
+
+async function start() {
+
+  const user =
+    await checkAdmin();
 
   if (!user) return;
 
-
-  const { count: productsCount } =
-    await supabaseClient
-      .from("products")
-      .select("*", {
-        count: "exact",
-        head: true
-      });
-
-  document.getElementById("productsCount").textContent =
-    productsCount || 0;
-
-
-  const { count: ordersCount } =
-    await supabaseClient
-      .from("orders")
-      .select("*", {
-        count: "exact",
-        head: true
-      });
-
-  document.getElementById("ordersCount").textContent =
-    ordersCount || 0;
-
-
-  const { count: affiliateCount } =
-    await supabaseClient
-      .from("affiliates")
-      .select("*", {
-        count: "exact",
-        head: true
-      });
-
-  document.getElementById("affiliateCount").textContent =
-    affiliateCount || 0;
+  await loadOrders();
 
 }
 
 
-document
-  .getElementById("logout")
-  .addEventListener("click", async () => {
-
-    await supabaseClient.auth.signOut();
-
-    window.location.href = "login.html";
-
-  });
-
-
-loadDashboard();
+start();
 
 </script>
 
