@@ -1,185 +1,312 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>H-A House Admin Login</title>
+<meta charset="UTF-8">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<title>H-A House Admin Login</title>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f3f4f6;
-    }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    .login-box {
-      width: 380px;
-      max-width: 92%;
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 35px rgba(0,0,0,.12);
-    }
+<script src="config.js"></script>
 
-    h1 {
-      text-align: center;
-      margin-bottom: 8px;
-    }
+<style>
 
-    .subtitle {
-      text-align: center;
-      color: #777;
-      margin-bottom: 25px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    label {
-      display: block;
-      margin: 14px 0 6px;
-      font-weight: bold;
-    }
+body {
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ddd;
-      border-radius: 9px;
-      font-size: 15px;
-    }
+  margin: 0;
 
-    button {
-      width: 100%;
-      margin-top: 22px;
-      padding: 14px;
-      border: 0;
-      border-radius: 9px;
-      background: #111827;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
+  font-family: Arial, sans-serif;
 
-    button:hover {
-      background: #000;
-    }
+  background: #f4f1eb;
 
-    #message {
-      margin-top: 15px;
-      text-align: center;
-      color: #d00;
-      min-height: 20px;
-    }
-  </style>
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #241f1a;
+
+}
+
+.login-box {
+
+  width: 380px;
+
+  max-width: 92%;
+
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.12);
+
+}
+
+h1 {
+
+  text-align: center;
+
+  margin-bottom: 8px;
+
+}
+
+.subtitle {
+
+  text-align: center;
+
+  color: #777;
+
+  margin-bottom: 25px;
+
+}
+
+label {
+
+  display: block;
+
+  margin: 14px 0 6px;
+
+  font-weight: bold;
+
+}
+
+input {
+
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 9px;
+
+  font-size: 15px;
+
+}
+
+button {
+
+  width: 100%;
+
+  margin-top: 22px;
+
+  padding: 14px;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  background: #211b16;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+}
+
+#message {
+
+  margin-top: 15px;
+
+  text-align: center;
+
+  min-height: 20px;
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-  <div class="login-box">
 
-    <h1>H-A House</h1>
+<div class="login-box">
 
-    <div class="subtitle">
-      Admin Panel Login
-    </div>
+<h1>
+H-A House
+</h1>
 
-    <form id="loginForm">
+<div class="subtitle">
+Admin Panel Login
+</div>
 
-      <label>Email</label>
 
-      <input
-        type="email"
-        id="email"
-        value="mhashim92111@gmail.com"
-        required
-      >
+<form id="loginForm">
 
-      <label>Password</label>
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter password"
-        required
-      >
+<label>
+Email
+</label>
 
-      <button type="submit">
-        Login
-      </button>
+<input
+  type="email"
+  id="email"
+  value="mhashim92111@gmail.com"
+  required>
 
-    </form>
 
-    <div id="message"></div>
+<label>
+Password
+</label>
 
-  </div>
+<input
+  type="password"
+  id="password"
+  placeholder="Enter password"
+  required>
+
+
+<button type="submit">
+Login
+</button>
+
+
+<div id="message"></div>
+
+
+</form>
+
+</div>
+
 
 <script>
 
-const form = document.getElementById("loginForm");
-const message = document.getElementById("message");
+const form =
+  document.getElementById(
+    "loginForm"
+  );
 
-form.addEventListener("submit", async function(e) {
+const message =
+  document.getElementById(
+    "message"
+  );
 
-  e.preventDefault();
 
-  message.style.color = "#555";
-  message.textContent = "Logging in...";
+form.addEventListener(
+  "submit",
+  async function(event) {
 
-  const email =
-    document.getElementById("email").value.trim();
+    event.preventDefault();
 
-  const password =
-    document.getElementById("password").value;
 
-  const { data, error } =
-    await supabaseClient.auth.signInWithPassword({
-      email: email,
-      password: password
-    });
-
-  if (error) {
-
-    message.style.color = "red";
-    message.textContent = error.message;
-
-    return;
-  }
-
-  const user = data.user;
-
-  const { data: admin, error: adminError } =
-    await supabaseClient
-      .from("admin_profiles")
-      .select("id,email,role")
-      .eq("id", user.id)
-      .maybeSingle();
-
-  if (adminError || !admin) {
-
-    await supabaseClient.auth.signOut();
-
-    message.style.color = "red";
     message.textContent =
-      "This account is not an H-A House admin.";
+      "Logging in...";
 
-    return;
+
+    const email =
+      document.getElementById(
+        "email"
+      ).value.trim();
+
+
+    const password =
+      document.getElementById(
+        "password"
+      ).value;
+
+
+    const { data, error } =
+      await supabaseClient
+        .auth
+        .signInWithPassword({
+
+          email:
+            email,
+
+          password:
+            password
+
+        });
+
+
+    if (error) {
+
+      message.textContent =
+        error.message;
+
+      message.style.color =
+        "red";
+
+      return;
+
+    }
+
+
+    const user =
+      data.user;
+
+
+    const {
+      data: admin,
+      error: adminError
+    } =
+      await supabaseClient
+
+        .from("admin_profiles")
+
+        .select(
+          "id,email,role"
+        )
+
+        .eq(
+          "id",
+          user.id
+        )
+
+        .maybeSingle();
+
+
+    if (
+      adminError ||
+      !admin
+    ) {
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+
+      message.textContent =
+        "This account is not an H-A House admin.";
+
+      message.style.color =
+        "red";
+
+      return;
+
+    }
+
+
+    window.location.href =
+      "dashboard.html";
+
   }
 
-  window.location.href = "dashboard.html";
-
-});
+);
 
 </script>
 
 </body>
+
 </html>
