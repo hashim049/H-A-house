@@ -1,39 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>H A House | Handcrafted Home Collection</title>
 
-<meta name="description"
-      content="H A House - Handcrafted home products. Explore our collection and order on WhatsApp.">
+<meta name="description" content="H A House - Handcrafted home products.">
 
-<meta property="og:title"
-      content="H A House | Handcrafted Home Collection">
-
-<meta property="og:description"
-      content="Handcrafted cane racks by H A House. View products, prices and order on WhatsApp.">
-
-<meta property="og:type"
-      content="website">
-
-<meta property="og:url"
-      content="https://hashim049.github.io/H-A-house/">
+<meta property="og:title" content="H A House | Handcrafted Home Collection">
+<meta property="og:description" content="Handcrafted home products by H A House. View products, prices and order on WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hashim049.github.io/H-A-house/">
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html{
@@ -41,49 +25,32 @@ html{
 }
 
 body{
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:#f8f6f2;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f7f4ef;
     color:#211c17;
-    line-height:1.6;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
-.header{
+header{
+    background:#fff;
+    border-bottom:1px solid #e7e0d8;
     position:sticky;
     top:0;
-    z-index:1000;
-
-    background:#ffffff;
-    border-bottom:1px solid #ebe5de;
+    z-index:100;
 }
 
 .nav{
     max-width:1200px;
     margin:auto;
-
     min-height:72px;
-
-    padding:0 22px;
-
+    padding:0 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-
-    gap:20px;
 }
 
 .logo{
-    text-decoration:none;
     color:#211c17;
-
+    text-decoration:none;
     font-size:25px;
     font-weight:800;
 }
@@ -92,744 +59,299 @@ body{
     font-weight:400;
 }
 
-.navlinks{
-    display:flex;
-    gap:28px;
-}
-
-.navlinks a{
+.nav a{
+    margin-left:25px;
     text-decoration:none;
-    color:#342c25;
-
-    font-size:14px;
-    font-weight:700;
+    color:#40372f;
+    font-weight:600;
 }
 
-.navlinks a:hover{
-    color:#8a5a35;
-}
-
-.header-whatsapp{
+.whatsapp{
     border:0;
-
     background:#168c45;
     color:#fff;
-
     padding:11px 17px;
-
     border-radius:8px;
-
+    font-weight:bold;
     cursor:pointer;
-
-    font-weight:700;
 }
-
-
-/* =========================
-   HERO
-========================= */
 
 .hero{
     max-width:1200px;
     margin:auto;
-
-    padding:35px 22px 50px;
+    padding:25px 20px 50px;
 }
 
 .hero-box{
-    min-height:460px;
-
+    min-height:440px;
+    padding:55px;
     border-radius:25px;
-
-    padding:60px;
-
     display:flex;
     align-items:center;
-
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at 85% 20%,
-            #e9d4bb 0,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #eee0ce,
-            #fffaf4
-        );
+    background:linear-gradient(135deg,#ead9c4,#fffaf5);
 }
 
 .hero-content{
-    max-width:680px;
+    max-width:650px;
 }
 
 .tag{
     display:inline-block;
-
-    background:#ffffff;
-
     padding:8px 14px;
-
-    border-radius:30px;
-
+    background:#fff;
+    border-radius:20px;
     font-size:11px;
-    font-weight:800;
-
+    font-weight:bold;
     letter-spacing:2px;
-
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
-.hero h1{
-    font-size:
-        clamp(
-            42px,
-            6vw,
-            72px
-        );
-
-    line-height:1.04;
-
-    margin-bottom:20px;
+h1{
+    font-size:clamp(42px,6vw,70px);
+    line-height:1.05;
+    margin-bottom:18px;
 }
 
-.hero h1 span{
+h1 span{
     color:#8a5a35;
 }
 
 .hero p{
-    max-width:580px;
-
-    color:#655c54;
-
+    color:#6b625a;
     font-size:18px;
-
-    margin-bottom:28px;
-}
-
-.hero-buttons{
-    display:flex;
-
-    gap:12px;
-
-    flex-wrap:wrap;
+    max-width:570px;
+    margin-bottom:25px;
 }
 
 .btn{
-    border:0;
-
-    padding:14px 22px;
-
+    display:inline-block;
+    padding:14px 21px;
     border-radius:9px;
-
-    text-decoration:none;
-
-    display:inline-flex;
-
-    justify-content:center;
-    align-items:center;
-
+    border:0;
     cursor:pointer;
-
-    font-weight:700;
-
-    font-size:14px;
+    font-weight:bold;
+    text-decoration:none;
 }
 
-.btn-dark{
+.dark{
     background:#211c17;
     color:#fff;
 }
-
-.btn-light{
-    background:#fff;
-    color:#211c17;
-
-    border:1px solid #ddd3c8;
-}
-
-.btn-green{
-    background:#168c45;
-    color:#fff;
-}
-
-
-/* =========================
-   SECTION
-========================= */
 
 .section{
     max-width:1200px;
     margin:auto;
-
-    padding:60px 22px;
+    padding:55px 20px;
 }
 
-.section-heading{
+.heading{
     text-align:center;
-
-    margin-bottom:35px;
+    margin-bottom:30px;
 }
 
-.section-heading small{
+.heading small{
     color:#8a5a35;
-
-    font-size:12px;
-
-    font-weight:800;
-
+    font-weight:bold;
     letter-spacing:2px;
 }
 
-.section-heading h2{
+.heading h2{
     font-size:38px;
-
     margin:8px 0;
 }
 
-.section-heading p{
-    color:#766d65;
+.heading p{
+    color:#777;
 }
 
-
-/* =========================
-   PRODUCT GRID
-========================= */
-
-.products{
+.product-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0,1fr)
-        );
-
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:25px;
 }
 
-
-/* =========================
-   PRODUCT
-========================= */
-
 .product{
     background:#fff;
-
-    border:1px solid #ebe4dc;
-
+    border:1px solid #e8e0d8;
     border-radius:18px;
-
     overflow:hidden;
-
-    transition:
-        transform .25s,
-        box-shadow .25s;
 }
 
-.product:hover{
-    transform:translateY(-5px);
-
-    box-shadow:
-        0 18px 40px
-        rgba(0,0,0,.10);
-}
-
-
-/* =========================
-   GALLERY
-========================= */
-
-.product-gallery{
-    background:#f1ece6;
-
+.gallery{
+    background:#f0ebe5;
     padding:14px;
 }
 
-.main-product-image{
-    width:100%;
-
+.main-image{
     height:470px;
-
     background:#fff;
-
-    border-radius:13px;
-
+    border-radius:12px;
     overflow:hidden;
 }
 
-.main-product-image img{
+.main-image img{
     width:100%;
     height:100%;
-
-    display:block;
-
     object-fit:contain;
+    display:block;
 }
 
-.product-thumbs{
+.thumbs{
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:9px;
-
-    margin-top:10px;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:9px;
 }
 
-.product-thumbs img{
+.thumbs img{
     width:100%;
-    height:85px;
-
+    height:80px;
     object-fit:cover;
-
     background:#fff;
-
-    border-radius:9px;
-
+    border-radius:8px;
     cursor:pointer;
-
     border:2px solid transparent;
-
-    transition:.2s;
 }
 
-.product-thumbs img:hover{
-    border-color:#8a5a35;
-}
-
-.product-thumbs img.active-thumb{
+.thumbs img.active{
     border-color:#211c17;
 }
 
-
-/* =========================
-   PRODUCT BODY
-========================= */
-
-.product-body{
+.product-info{
     padding:22px;
 }
 
-.product-category{
+.category{
     color:#8a5a35;
-
     font-size:11px;
-
-    font-weight:800;
-
+    font-weight:bold;
     letter-spacing:1.5px;
 }
 
-.product h3{
-    font-size:23px;
-
-    margin:7px 0;
+.product-info h3{
+    font-size:24px;
+    margin:6px 0;
 }
 
-.product-description{
+.description{
     color:#777;
-
     font-size:14px;
-
     min-height:45px;
 }
 
 .product-bottom{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
     margin-top:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
 }
 
 .price{
-    font-size:23px;
-
+    font-size:24px;
     font-weight:800;
 }
 
-.order-btn{
-    border:0;
-
+.order{
     background:#168c45;
-    color:#fff;
-
-    padding:12px 17px;
-
+    color:white;
+    border:0;
     border-radius:8px;
-
+    padding:12px 17px;
     cursor:pointer;
-
-    font-weight:700;
+    font-weight:bold;
 }
-
-.order-btn:hover{
-    background:#106c35;
-}
-
-
-/* =========================
-   FEATURES
-========================= */
-
-.features{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:15px;
-}
-
-.feature{
-    background:#fff;
-
-    border:1px solid #ebe5de;
-
-    border-radius:14px;
-
-    padding:25px 18px;
-
-    text-align:center;
-}
-
-.feature-icon{
-    font-size:29px;
-
-    margin-bottom:8px;
-}
-
-.feature h3{
-    font-size:16px;
-
-    margin-bottom:5px;
-}
-
-.feature p{
-    color:#777;
-
-    font-size:13px;
-}
-
-
-/* =========================
-   ABOUT
-========================= */
 
 .about{
     background:#211c17;
-
     color:#fff;
-
-    border-radius:22px;
-
-    padding:50px;
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:45px;
-
-    align-items:center;
-}
-
-.about small{
-    color:#d2a477;
-
-    font-weight:800;
-
-    letter-spacing:2px;
+    border-radius:20px;
+    padding:45px;
+    text-align:center;
 }
 
 .about h2{
-    font-size:40px;
-
-    margin:8px 0 15px;
+    font-size:38px;
+    margin:8px 0;
 }
 
 .about p{
-    color:#d4ccc4;
+    color:#d5cec7;
+    max-width:650px;
+    margin:auto;
 }
 
-
-/* =========================
-   WHATSAPP
-========================= */
-
-.whatsapp-section{
+.contact{
     text-align:center;
-}
-
-.whatsapp-box{
-    background:#e9f7ed;
-
+    background:#eaf7ed;
     border:1px solid #cce9d4;
-
     border-radius:20px;
-
     padding:45px 20px;
 }
 
-.whatsapp-box h2{
+.contact h2{
     font-size:34px;
-
     margin-bottom:8px;
 }
 
-.whatsapp-box p{
+.contact p{
     color:#55705d;
-
     margin-bottom:20px;
 }
-
-
-/* =========================
-   FOOTER
-========================= */
 
 footer{
-    margin-top:40px;
-
     background:#17130f;
-
-    color:#fff;
-
-    padding:35px 22px;
-}
-
-.footer-inner{
-    max-width:1200px;
-
-    margin:auto;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-}
-
-.footer-inner p{
-    color:#aaa;
-
-    font-size:13px;
-}
-
-
-/* =========================
-   ORDER MODAL
-========================= */
-
-.modal{
-    position:fixed;
-
-    inset:0;
-
-    z-index:2000;
-
-    background:rgba(0,0,0,.65);
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:18px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:
-        min(
-            500px,
-            100%
-        );
-
-    max-height:90vh;
-
-    overflow:auto;
-
-    background:#fff;
-
-    border-radius:18px;
-
-    padding:25px;
-}
-
-.modal-header{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:20px;
-}
-
-.modal-header h2{
-    font-size:22px;
-}
-
-.close{
-    border:0;
-
-    width:35px;
-    height:35px;
-
-    border-radius:50%;
-
-    background:#eee;
-
-    font-size:20px;
-
-    cursor:pointer;
-}
-
-.selected-product{
-    background:#f5efe8;
-
-    border-radius:10px;
-
-    padding:15px;
-
-    margin-bottom:18px;
-}
-
-.selected-product strong{
-    font-size:17px;
-}
-
-.form-group{
-    margin-bottom:14px;
-}
-
-.form-group label{
-    display:block;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea{
-    width:100%;
-
-    border:1px solid #ddd;
-
-    border-radius:8px;
-
-    padding:12px;
-
-    font-family:inherit;
-
-    font-size:14px;
-
-    outline:none;
-}
-
-.form-group input:focus,
-.form-group textarea:focus{
-    border-color:#8a5a35;
-}
-
-.submit-order{
-    width:100%;
-
-    background:#168c45;
-
-    color:#fff;
-}
-
-.note{
+    color:white;
+    padding:30px 20px;
     text-align:center;
-
-    color:#888;
-
-    font-size:12px;
-
-    margin-top:10px;
 }
 
+footer p{
+    color:#aaa;
+    margin-top:5px;
+    font-size:13px;
+}
 
-/* =========================
-   MOBILE
-========================= */
+.loading{
+    text-align:center;
+    padding:50px;
+    color:#777;
+}
 
-@media(max-width:900px){
+.error{
+    background:#fff0f0;
+    color:#a00000;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
 
-    .navlinks{
+@media(max-width:850px){
+    .nav a{
         display:none;
     }
 
-    .products{
+    .product-grid{
         grid-template-columns:1fr;
-    }
-
-    .features{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .about{
-        grid-template-columns:1fr;
-    }
-
-}
-
-
-@media(max-width:600px){
-
-    .nav{
-        padding:0 15px;
-    }
-
-    .logo{
-        font-size:22px;
-    }
-
-    .header-whatsapp{
-        padding:9px 12px;
-
-        font-size:12px;
-    }
-
-    .hero{
-        padding:
-            20px
-            15px
-            40px;
     }
 
     .hero-box{
-        min-height:420px;
+        padding:35px 25px;
+    }
+}
 
-        padding:35px 22px;
-
-        border-radius:18px;
+@media(max-width:600px){
+    .hero{
+        padding:15px 12px 35px;
     }
 
-    .hero h1{
+    .hero-box{
+        min-height:400px;
+        border-radius:18px;
+        padding:30px 20px;
+    }
+
+    h1{
         font-size:42px;
     }
 
@@ -838,175 +360,335 @@ footer{
     }
 
     .section{
-        padding:
-            45px
-            15px;
+        padding:40px 12px;
     }
 
-    .section-heading h2{
-        font-size:30px;
-    }
-
-    .main-product-image{
+    .main-image{
         height:390px;
     }
 
-    .product-thumbs img{
-        height:75px;
-    }
-
-    .features{
-        grid-template-columns:1fr;
-    }
-
-    .about{
-        padding:35px 25px;
-    }
-
-    .about h2{
-        font-size:32px;
+    .thumbs img{
+        height:70px;
     }
 
     .product-bottom{
-        align-items:flex-start;
-
         flex-direction:column;
+        align-items:stretch;
     }
 
-    .order-btn{
+    .order{
         width:100%;
     }
 
+    .about{
+        padding:35px 20px;
+    }
 }
-
-
-/* =========================
-   SMALL PHONE
-========================= */
-
-@media(max-width:380px){
-
-    .main-product-image{
-        height:330px;
-    }
-
-    .product-thumbs img{
-        height:60px;
-    }
-
-    .hero h1{
-        font-size:36px;
-    }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
+<header>
+<div class="nav">
 
-<!-- =========================
-     HEADER
-========================= -->
+<a href="#" class="logo">
+H A <span>House</span>
+</a>
 
-<header class="header">
+<div>
+<a href="#products">Products</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
 
-    <div class="nav">
+<button class="whatsapp" onclick="generalWhatsApp()">
+WhatsApp
+</button>
 
-        <a
-            href="#"
-            class="logo">
-
-            H A
-            <span>House</span>
-
-        </a>
-
-
-        <nav class="navlinks">
-
-            <a href="#products">
-                Products
-            </a>
-
-            <a href="#about">
-                About
-            </a>
-
-            <a href="#contact">
-                Contact
-            </a>
-
-        </nav>
-
-
-        <button
-            class="header-whatsapp"
-            onclick="openWhatsAppGeneral()">
-
-            WhatsApp
-
-        </button>
-
-    </div>
-
+</div>
 </header>
 
 
-
-<!-- =========================
-     HERO
-========================= -->
-
 <section class="hero">
 
-    <div class="hero-box">
+<div class="hero-box">
 
-        <div class="hero-content">
+<div class="hero-content">
 
-            <span class="tag">
-                H A HOUSE
+<span class="tag">H A HOUSE</span>
+
+<h1>
+Beautiful things,
+<span>made for home.</span>
+</h1>
+
+<p>
+Discover handcrafted home products designed
+to bring warmth, style and usefulness to your home.
+</p>
+
+<a href="#products" class="btn dark">
+Explore Collection
+</a>
+
+</div>
+</div>
+
+</section>
+
+
+<section class="section" id="products">
+
+<div class="heading">
+
+<small>OUR COLLECTION</small>
+
+<h2>Featured Products</h2>
+
+<p>Handcrafted products by H A House.</p>
+
+</div>
+
+<div id="productGrid" class="product-grid">
+
+<div class="loading">
+Loading products...
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="about">
+
+<div class="about">
+
+<div>
+<small>ABOUT H A HOUSE</small>
+
+<h2>
+Made with care.
+</h2>
+
+<p>
+H A House brings beautiful and useful
+home products with a focus on craftsmanship,
+simplicity and value.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="contact">
+
+<div class="contact">
+
+<h2>
+Want to order?
+</h2>
+
+<p>
+Contact H A House directly on WhatsApp.
+</p>
+
+<button class="btn whatsapp" onclick="generalWhatsApp()">
+💬 Chat on WhatsApp
+</button>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<strong>H A House</strong>
+
+<p>
+© <span id="year"></span> H A House. All rights reserved.
+</p>
+
+</footer>
+
+
+<script src="config.js"></script>
+
+<script>
+
+const WHATSAPP_NUMBER = "919876543210";
+
+let products = [];
+
+
+/* LOAD PRODUCTS FROM SUPABASE */
+
+async function loadProducts(){
+
+    const grid =
+        document.getElementById("productGrid");
+
+    try{
+
+        const response = await fetch(
+            SUPABASE_URL +
+            "/rest/v1/products?select=*&active=eq.true&order=name",
+            {
+                headers:{
+                    "apikey":SUPABASE_KEY,
+                    "Authorization":
+                    "Bearer " + SUPABASE_KEY
+                }
+            }
+        );
+
+        if(!response.ok){
+
+            throw new Error(
+                "Supabase connection error"
+            );
+
+        }
+
+        products =
+            await response.json();
+
+        if(products.length === 0){
+
+            grid.innerHTML =
+                '<div class="error">No products available.</div>';
+
+            return;
+        }
+
+        grid.innerHTML = "";
+
+        products.forEach(
+            function(product,index){
+
+                grid.innerHTML +=
+                    createProductHTML(
+                        product,
+                        index
+                    );
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        grid.innerHTML =
+            '<div class="error">' +
+            'Products load nahi ho rahe. ' +
+            'Supabase settings check karo.' +
+            '</div>';
+
+    }
+
+}
+
+
+/* PRODUCT HTML */
+
+function createProductHTML(
+    product,
+    index
+){
+
+    const images = [
+        product.image_url,
+        product.image_2_url,
+        product.image_3_url,
+        product.image_4_url
+    ].filter(
+        image => image && image.trim() !== ""
+    );
+
+    const firstImage =
+        images[0] || "";
+
+    let thumbnails = "";
+
+    images.forEach(
+        function(image,imageIndex){
+
+            thumbnails +=
+            `
+            <img
+                src="${escapeHTML(image)}"
+                class="${imageIndex === 0 ? "active" : ""}"
+                onclick="changeImage(
+                    this,
+                    'main-${index}'
+                )"
+                onerror="this.style.display='none'"
+                alt="${escapeHTML(product.name)}"
+            >
+            `;
+
+        }
+    );
+
+
+    return `
+
+    <article class="product">
+
+        <div class="gallery">
+
+            <div class="main-image">
+
+                <img
+                    id="main-${index}"
+                    src="${escapeHTML(firstImage)}"
+                    alt="${escapeHTML(product.name)}"
+                    onerror="this.style.display='none'"
+                >
+
+            </div>
+
+            <div class="thumbs">
+
+                ${thumbnails}
+
+            </div>
+
+        </div>
+
+
+        <div class="product-info">
+
+            <span class="category">
+                HANDCRAFTED
             </span>
 
+            <h3>
+                ${escapeHTML(product.name)}
+            </h3>
 
-            <h1>
-
-                Beautiful things,
-                <span>
-                    made for home.
-                </span>
-
-            </h1>
-
-
-            <p>
-
-                Discover handcrafted home
-                products designed to bring
-                warmth, style and usefulness
-                to your home.
-
+            <p class="description">
+                ${escapeHTML(product.description || "")}
             </p>
 
+            <div class="product-bottom">
 
-            <div class="hero-buttons">
-
-                <a
-                    href="#products"
-                    class="btn btn-dark">
-
-                    Explore Collection
-
-                </a>
-
+                <span class="price">
+                    ₹${Number(product.price || 0).toLocaleString("en-IN")}
+                </span>
 
                 <button
-                    class="btn btn-light"
-                    onclick="openWhatsAppGeneral()">
+                    class="order"
+                    onclick="orderProduct(${index})">
 
-                    Chat on WhatsApp
+                    Order on WhatsApp
 
                 </button>
 
@@ -1014,758 +696,114 @@ footer{
 
         </div>
 
-    </div>
+    </article>
 
-</section>
+    `;
 
+}
 
 
-<!-- =========================
-     PRODUCTS
-========================= -->
+/* CHANGE IMAGE */
 
-<section
-    class="section"
-    id="products">
-
-
-    <div class="section-heading">
-
-        <small>
-            OUR COLLECTION
-        </small>
-
-        <h2>
-            Featured Product
-        </h2>
-
-        <p>
-            Handcrafted rack by H A House.
-        </p>
-
-    </div>
-
-
-
-    <div class="products">
-
-
-        <article class="product">
-
-
-            <!-- IMAGE GALLERY -->
-
-            <div class="product-gallery">
-
-
-                <div class="main-product-image">
-
-                    <img
-                        id="mainProductImage"
-                        src="rack4.jpeg"
-                        alt="H A House Premium Cane Rack">
-
-                </div>
-
-
-                <div class="product-thumbs">
-
-
-                    <img
-                        src="rack4.jpeg"
-                        class="active-thumb"
-                        alt="Rack front view"
-                        onclick="changeProductImage(this)">
-
-
-                    <img
-                        src="rack04.jpeg"
-                        alt="Rack lifestyle view"
-                        onclick="changeProductImage(this)">
-
-
-                    <img
-                        src="rack004.jpeg"
-                        alt="Rack room view"
-                        onclick="changeProductImage(this)">
-
-
-                    <img
-                        src="rack-004.jpeg"
-                        alt="Rack home view"
-                        onclick="changeProductImage(this)">
-
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PRODUCT INFORMATION -->
-
-            <div class="product-body">
-
-
-                <span class="product-category">
-                    HANDCRAFTED
-                </span>
-
-
-                <h3>
-                    Premium Cane Rack
-                </h3>
-
-
-                <p class="product-description">
-
-                    Beautiful handcrafted rack
-                    designed for home storage,
-                    decoration and everyday use.
-
-                </p>
-
-
-                <div class="product-bottom">
-
-
-                    <span class="price">
-                        ₹1,499
-                    </span>
-
-
-                    <button
-                        class="order-btn"
-                        onclick="openOrder(
-                            'Premium Cane Rack',
-                            1499
-                        )">
-
-                        Order on WhatsApp
-
-                    </button>
-
-
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     FEATURES
-========================= -->
-
-<section class="section">
-
-    <div class="features">
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                ✋
-            </div>
-
-            <h3>
-                Handcrafted
-            </h3>
-
-            <p>
-                Carefully made with
-                attention to detail.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                🏠
-            </div>
-
-            <h3>
-                Home Ready
-            </h3>
-
-            <p>
-                Designed for practical
-                everyday use.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                📦
-            </div>
-
-            <h3>
-                Easy Ordering
-            </h3>
-
-            <p>
-                Order directly through
-                WhatsApp.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                💬
-            </div>
-
-            <h3>
-                WhatsApp Support
-            </h3>
-
-            <p>
-                Talk to us directly
-                for your order.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section
-    class="section"
-    id="about">
-
-
-    <div class="about">
-
-
-        <div>
-
-            <small>
-                ABOUT H A HOUSE
-            </small>
-
-            <h2>
-                Made with care.
-            </h2>
-
-        </div>
-
-
-        <div>
-
-            <p>
-
-                H A House brings together
-                beautiful and useful home
-                products with a focus on
-                craftsmanship, simplicity
-                and value.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     WHATSAPP
-========================= -->
-
-<section
-    class="section whatsapp-section"
-    id="contact">
-
-
-    <div class="whatsapp-box">
-
-
-        <h2>
-            Want to order?
-        </h2>
-
-
-        <p>
-            Contact H A House directly
-            on WhatsApp.
-        </p>
-
-
-        <button
-            class="btn btn-green"
-            onclick="openWhatsAppGeneral()">
-
-            💬 Chat on WhatsApp
-
-        </button>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <div class="footer-inner">
-
-        <strong>
-            H A House
-        </strong>
-
-
-        <p>
-
-            ©
-            <span id="year"></span>
-            H A House.
-            All rights reserved.
-
-        </p>
-
-    </div>
-
-</footer>
-
-
-
-<!-- =========================
-     ORDER MODAL
-========================= -->
-
-<div
-    class="modal"
-    id="orderModal">
-
-
-    <div class="modal-box">
-
-
-        <div class="modal-header">
-
-            <h2>
-                Order on WhatsApp
-            </h2>
-
-
-            <button
-                class="close"
-                onclick="closeOrder()">
-
-                ×
-
-            </button>
-
-        </div>
-
-
-
-        <div class="selected-product">
-
-            <strong id="selectedName">
-                Premium Cane Rack
-            </strong>
-
-            <br>
-
-            <span id="selectedPrice">
-                ₹1,499
-            </span>
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Your Name
-            </label>
-
-            <input
-                id="customerName"
-                type="text"
-                placeholder="Enter your name">
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Mobile Number
-            </label>
-
-            <input
-                id="customerPhone"
-                type="tel"
-                placeholder="Enter mobile number">
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Address
-            </label>
-
-            <textarea
-                id="customerAddress"
-                rows="4"
-                placeholder="Enter delivery address">
-            </textarea>
-
-        </div>
-
-
-
-        <button
-            class="btn submit-order"
-            onclick="sendOrder()">
-
-            💬 Continue to WhatsApp
-
-        </button>
-
-
-        <p class="note">
-
-            WhatsApp will open with
-            your order details.
-
-        </p>
-
-    </div>
-
-</div>
-
-
-
-<script>
-
-
-/* =========================
-   H A HOUSE SETTINGS
-========================= */
-
-
-/*
-   IMPORTANT:
-
-   YAHAN APNA BUSINESS WHATSAPP
-   NUMBER DALO.
-
-   Example:
-   919876543210
-
-   + mat lagana.
-   Space mat lagana.
-*/
-
-const WHATSAPP_NUMBER =
-"919653364494";
-
-
-/* =========================
-   SELECTED PRODUCT
-========================= */
-
-let selectedProduct = {
-
-    name:"",
-    price:0
-
-};
-
-
-
-/* =========================
-   YEAR
-========================= */
-
-document.getElementById(
-    "year"
-).textContent =
-new Date().getFullYear();
-
-
-
-/* =========================
-   IMAGE GALLERY
-========================= */
-
-function changeProductImage(
-    thumbnail
+function changeImage(
+    thumbnail,
+    mainId
 ){
 
-    const mainImage =
-        document.getElementById(
-            "mainProductImage"
-        );
+    const main =
+        document.getElementById(mainId);
 
-
-    mainImage.src =
+    main.src =
         thumbnail.src;
 
+    thumbnail
+        .parentElement
+        .querySelectorAll("img")
+        .forEach(
+            img => img.classList.remove("active")
+        );
 
-    document.querySelectorAll(
-        ".product-thumbs img"
-    ).forEach(
-        function(img){
-
-            img.classList.remove(
-                "active-thumb"
-            );
-
-        }
-    );
-
-
-    thumbnail.classList.add(
-        "active-thumb"
-    );
+    thumbnail.classList.add("active");
 
 }
 
 
+/* ORDER */
 
-/* =========================
-   OPEN ORDER
-========================= */
+function orderProduct(index){
 
-function openOrder(
-    productName,
-    productPrice
-){
-
-    selectedProduct = {
-
-        name:productName,
-
-        price:productPrice
-
-    };
-
-
-    document.getElementById(
-        "selectedName"
-    ).textContent =
-        productName;
-
-
-    document.getElementById(
-        "selectedPrice"
-    ).textContent =
-        "₹" +
-        Number(productPrice)
-        .toLocaleString("en-IN");
-
-
-    document.getElementById(
-        "orderModal"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-
-/* =========================
-   CLOSE ORDER
-========================= */
-
-function closeOrder(){
-
-    document.getElementById(
-        "orderModal"
-    ).classList.remove(
-        "show"
-    );
-
-}
-
-
-
-/* =========================
-   SEND ORDER
-========================= */
-
-function sendOrder(){
-
-    const name =
-        document.getElementById(
-            "customerName"
-        ).value.trim();
-
-
-    const phone =
-        document.getElementById(
-            "customerPhone"
-        ).value.trim();
-
-
-    const address =
-        document.getElementById(
-            "customerAddress"
-        ).value.trim();
-
-
-    if(!name){
-
-        alert(
-            "Please enter your name."
-        );
-
-        return;
-
-    }
-
-
-    if(!phone){
-
-        alert(
-            "Please enter your mobile number."
-        );
-
-        return;
-
-    }
-
-
-    if(!address){
-
-        alert(
-            "Please enter your delivery address."
-        );
-
-        return;
-
-    }
-
+    const product =
+        products[index];
 
     const message =
 
 `🛒 H A HOUSE ORDER
 
 Product:
-${selectedProduct.name}
+${product.name}
 
 Price:
-₹${selectedProduct.price}
-
-Customer:
-${name}
-
-Mobile:
-${phone}
-
-Address:
-${address}
+₹${Number(product.price || 0).toLocaleString("en-IN")}
 
 I want to order this product.`;
 
 
-    const whatsappURL =
-
+    const url =
         "https://wa.me/" +
         WHATSAPP_NUMBER +
         "?text=" +
-        encodeURIComponent(
-            message
-        );
+        encodeURIComponent(message);
 
 
     window.open(
-        whatsappURL,
+        url,
         "_blank"
     );
 
 }
 
 
+/* GENERAL WHATSAPP */
 
-/* =========================
-   GENERAL WHATSAPP
-========================= */
-
-function openWhatsAppGeneral(){
+function generalWhatsApp(){
 
     const message =
         "Hello H A House, I want to know more about your products.";
 
-
-    const whatsappURL =
-
+    const url =
         "https://wa.me/" +
         WHATSAPP_NUMBER +
         "?text=" +
-        encodeURIComponent(
-            message
-        );
-
+        encodeURIComponent(message);
 
     window.open(
-        whatsappURL,
+        url,
         "_blank"
     );
 
 }
 
 
+/* SAFE TEXT */
 
-/* =========================
-   CLOSE MODAL
-========================= */
+function escapeHTML(value){
 
-document.getElementById(
-    "orderModal"
-).addEventListener(
-    "click",
-    function(event){
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
-        if(
-            event.target === this
-        ){
+}
 
-            closeOrder();
 
-        }
+document.getElementById("year")
+    .textContent =
+    new Date().getFullYear();
 
-    }
-);
 
+loadProducts();
 
 </script>
 
