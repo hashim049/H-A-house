@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H A House - Admin</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f1eb;
+    color:#211c17;
+}
+.top{
+    background:#211c17;
+    color:white;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.top h2{margin:0}
+.logout{
+    background:#fff;
+    color:#211c17;
+    border:0;
+    padding:9px 15px;
+    border-radius:7px;
+    cursor:pointer;
+}
+.container{
+    max-width:900px;
+    margin:30px auto;
+    padding:0 18px;
+}
+.card{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 5px 25px #00000012;
+}
+label{
+    display:block;
+    font-weight:bold;
+    margin:16px 0 6px;
+}
+input,textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:15px;
+}
+textarea{min-height:100px}
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+.image-box{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:12px;
+    margin-top:10px;
+}
+.preview{
+    width:100%;
+    height:180px;
+    object-fit:contain;
+    background:#f5f5f5;
+    border-radius:8px;
+    margin-top:10px;
+}
+.save{
+    width:100%;
+    margin-top:25px;
+    padding:15px;
+    border:0;
+    border-radius:9px;
+    background:#168c45;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.status{
+    margin-top:15px;
+    padding:12px;
+    border-radius:8px;
+    display:none;
+}
+.success{background:#e5f7ea;color:#126b32}
+.error{background:#fde8e8;color:#a11}
+
+@media(max-width:650px){
+    .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+    <h2>H A House — Admin</h2>
+    <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Product Management</h2>
+<p>Yahan se website ka product, price aur images change karo.</p>
+
+<label>Product Name</label>
+<input id="name" type="text">
+
+<label>Slug</label>
+<input id="slug" type="text">
+
+<label>Description</label>
+<textarea id="description"></textarea>
+
+<div class="grid">
+
+<div>
+<label>Price ₹</label>
+<input id="price" type="number">
+</div>
+
+<div>
+<label>Status</label>
+<select id="active" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px">
+<option value="true">Active</option>
+<option value="false">Hidden</option>
+</select>
+</div>
+
+</div>
+
+
+<div class="image-box">
+
+<label>Image 1 URL</label>
+<input id="image1" type="text" placeholder="Image URL">
+
+<img id="preview1" class="preview">
+
+</div>
+
+
+<div class="image-box">
+
+<label>Image 2 URL</label>
+<input id="image2" type="text" placeholder="Image URL">
+
+<img id="preview2" class="preview">
+
+</div>
+
+
+<div class="image-box">
+
+<label>Image 3 URL</label>
+<input id="image3" type="text" placeholder="Image URL">
+
+<img id="preview3" class="preview">
+
+</div>
+
+
+<div class="image-box">
+
+<label>Image 4 URL</label>
+<input id="image4" type="text" placeholder="Image URL">
+
+<img id="preview4" class="preview">
+
+</div>
+
+
+<button class="save" onclick="saveProduct()">
+💾 SAVE PRODUCT
+</button>
+
+<div id="status" class="status"></div>
+
+</div>
+
+</div>
+
+
+<script src="config.js"></script>
+
+<script>
+
+let productId = null;
+
+
+/* IMAGE PREVIEW */
+
+function preview(inputId, previewId){
+
+    document.getElementById(inputId)
+    .addEventListener("input", function(){
+
+        document.getElementById(previewId).src =
+            this.value;
+
+    });
+
+}
+
+preview("image1","preview1");
+preview("image2","preview2");
+preview("image3","preview3");
+preview("image4","preview4");
+
+
+/* LOAD PRODUCT */
+
+async function loadProduct(){
+
+    try{
+
+        const response = await fetch(
+            SUPABASE_URL +
+            "/rest/v1/products?select=*&limit=1",
+            {
+                headers:{
+                    "apikey":SUPABASE_KEY,
+                    "Authorization":
+                    "Bearer " + SUPABASE_KEY
+                }
+            }
+        );
+
+        if(!response.ok)
+            throw new Error("Product load nahi hua");
+
+        const data = await response.json();
+
+        if(data.length === 0){
+
+            showStatus(
+                "Product nahi mila.",
+                false
+            );
+
+            return;
+        }
+
+        const p = data[0];
+
+        productId = p.id;
+
+        document.getElementById("name").value =
+            p.name || "";
+
+        document.getElementById("slug").value =
+            p.slug || "";
+
+        document.getElementById("description").value =
+            p.description || "";
+
+        document.getElementById("price").value =
+            p.price || 0;
+
+        document.getElementById("active").value =
+            String(
+                p.active !== false
+            );
+
+        document.getElementById("image1").value =
+            p.image_url || "";
+
+        document.getElementById("image2").value =
+            p.image_2_url || "";
+
+        document.getElementById("image3").value =
+            p.image_3_url || "";
+
+        document.getElementById("image4").value =
+            p.image_4_url || "";
+
+        document.getElementById("preview1").src =
+            p.image_url || "";
+
+        document.getElementById("preview2").src =
+            p.image_2_url || "";
+
+        document.getElementById("preview3").src =
+            p.image_3_url || "";
+
+        document.getElementById("preview4").src =
+            p.image_4_url || "";
+
+    }
+    catch(error){
+
+        showStatus(
+            error.message,
+            false
+        );
+
+    }
+
+}
+
+
+/* SAVE PRODUCT */
+
+async function saveProduct(){
+
+    if(!productId){
+
+        showStatus(
+            "Product ID nahi mila.",
+            false
+        );
+
+        return;
+    }
+
+
+    const updatedProduct = {
+
+        name:
+            document.getElementById("name").value.trim(),
+
+        slug:
+            document.getElementById("slug").value.trim(),
+
+        description:
+            document.getElementById("description").value.trim(),
+
+        price:
+            Number(
+                document.getElementById("price").value
+            ),
+
+        image_url:
+            document.getElementById("image1").value.trim(),
+
+        image_2_url:
+            document.getElementById("image2").value.trim(),
+
+        image_3_url:
+            document.getElementById("image3").value.trim(),
+
+        image_4_url:
+            document.getElementById("image4").value.trim(),
+
+        active:
+            document.getElementById("active").value === "true"
+
+    };
+
+
+    try{
+
+        const response = await fetch(
+
+            SUPABASE_URL +
+            "/rest/v1/products?id=eq." +
+            productId,
+
+            {
+                method:"PATCH",
+
+                headers:{
+                    "apikey":SUPABASE_KEY,
+                    "Authorization":
+                    "Bearer " + SUPABASE_KEY,
+                    "Content-Type":
+                    "application/json",
+                    "Prefer":
+                    "return=minimal"
+                },
+
+                body:
+                    JSON.stringify(
+                        updatedProduct
+                    )
+            }
+
+        );
+
+
+        if(!response.ok){
+
+            const error =
+                await response.text();
+
+            throw new Error(error);
+
+        }
+
+
+        showStatus(
+            "✅ Product successfully save ho gaya!",
+            true
+        );
+
+    }
+    catch(error){
+
+        showStatus(
+            "❌ Save error: " +
+            error.message,
+            false
+        );
+
+    }
+
+}
+
+
+/* STATUS */
+
+function showStatus(message, success){
+
+    const box =
+        document.getElementById("status");
+
+    box.textContent = message;
+
+    box.style.display = "block";
+
+    box.className =
+        "status " +
+        (success ? "success" : "error");
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* START */
+
+loadProduct();
+
+</script>
+
+</body>
+</html>
